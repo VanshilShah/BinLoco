@@ -26,8 +26,8 @@ public class Bin implements Comparable{
 	
 	
 	/**
-	 * calculates the approximate distance within an error of 
-	 * points should be in the form x = latitude, y = longitude
+	 * Calculates the approximate distance between this point, and another point. <br>
+	 * Points should be in the form x = latitude, y = longitude
 	 * @param p2
 	 * @param technique
 	 * 		controls which technique is used to calculate distance.
@@ -35,6 +35,16 @@ public class Bin implements Comparable{
 	 * @return distance
 	 */
     public double getDist(Bin p2, int technique) { return getDist(p2.getLatLng(), technique);}
+
+    /**
+	 * Calculates the approximate distance between this point, and another point. <br>
+	 * Points should be in the form x = latitude, y = longitude
+	 * @param p2
+	 * @param technique
+	 * 		controls which technique is used to calculate distance.
+	 * 		0 will use pythagorean, 1 haversine, 2 Spherical law of cosines 
+	 * @return distance
+	 */
 	public double getDist(LatLng p2, int technique)
 	{
 		int R = 6371000; // metres

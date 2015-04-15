@@ -1,0 +1,16 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- inherit from the material theme -->
+  <style name="AppTheme" parent="android:Theme.Material">
+    <!-- Main theme colors -->
+    <!--   your app branding color for the app bar -->
+    <item name="android:colorPrimary">@color/status_bar</item>
+    <!--   darker variant for the status bar and contextual app bars -->
+    <item name="android:colorPrimaryDark">@color/status_bar</item>
+    <!--   theme UI controls like checkboxes and text fields -->
+    <item name="android:colorAccent">@color/status_bar</item>
+    
+    <item name="android:windowBackground">@color/main_background</item>
+	
+    <item name="android:navigationBarColor">@color/nav_bar</item>    
+  </style>
+</resources>

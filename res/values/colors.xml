@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="title">#2DCC70</color>
+	<color name="main_background">#FDE3A7</color>
+	<color name="ripple_color">#F62459</color>
+	<color name="status_bar">#2DCCFF</color>
+	<color name="nav_bar">#446CB4</color>
+	<color name="text">#96281B</color>
+	
+</resources>

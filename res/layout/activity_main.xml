@@ -1,0 +1,27 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    
+    tools:context="com.example.binloco.MainActivity" >
+
+    <Button
+        android:id="@+id/gar"
+        android:layout_width="wrap_content"
+        android:layout_height="256dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="garSearch"
+        android:background="@drawable/gar" />
+
+    <Button
+        android:id="@+id/rec"
+        android:layout_width="wrap_content"
+        android:layout_height="256dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="recSearch"
+        android:background="@drawable/rec" />
+
+</RelativeLayout>

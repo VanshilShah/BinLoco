@@ -15,12 +15,12 @@ public class MainActivity extends Activity {
 	}
 
 	public void garSearch(View view){
-		searchType = 1;
+		searchType = Bin.LitterMask;
 		Intent i = new Intent(this, LocationActivity.class);
 		this.startActivity(i);
 	}
 	public void recSearch(View view){
-		searchType = 2;
+		searchType = Bin.RecyclingMask;
 		Intent i = new Intent(this, LocationActivity.class);
 		this.startActivity(i);
 	}

@@ -2,13 +2,16 @@ package com.example.binloco;
 
 import android.graphics.PointF;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Bin implements Comparable{
 	private LatLng loc;
 	private int types;
 	public static final int LitterMask = 0B001, RecyclingMask = 0B010, GreenMask = 0B100, PersonMask = 0B1000;
-
+	public static final float LitterColour = BitmapDescriptorFactory.HUE_GREEN, RecyclingColour = BitmapDescriptorFactory.HUE_BLUE, GreenColour = BitmapDescriptorFactory.HUE_YELLOW, PersonColour = BitmapDescriptorFactory.HUE_RED;
+	public static final float [] Colours = {0, LitterColour, RecyclingColour, 0, GreenColour, 0, 0, 0, PersonColour};
     private static int distAlgrthm = 1;
 	
 	public Bin(LatLng loc, int types)
@@ -76,6 +79,20 @@ public class Bin implements Comparable{
 			}
 		}
 		return d;
+	}
+	
+	/**
+	 * generates a MarkerOptions object at this location, with a specified title and bin type to use for colouring
+	 * @param title the pin title
+	 * @param type the bin type to associate the marker colour with 
+	 * @return a MarkerOptions object
+	 */
+	public MarkerOptions makeMarker(String title, int type)
+	{
+		return new MarkerOptions()
+    	.position(this.getLatLng())
+    	.title(title)
+    	.icon(BitmapDescriptorFactory.defaultMarker(Colours[type]));
 	}
 	
 	public double getLat() { return loc.latitude; }

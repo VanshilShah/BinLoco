@@ -24,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -32,7 +33,7 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, Go
 	
 	 public static final int DOCUMENT_REQUEST_CODE = 0;
 
-	    public static final boolean debugToasts = true;
+	    public static final boolean debugToasts = false;
 	    
 	    Bin [] closeBins = new Bin [5];
 		static Bin myLocation = new Bin(new LatLng(0, 0), 0B1000);
@@ -112,25 +113,14 @@ public class LocationActivity extends Activity implements OnMapReadyCallback, Go
 	    private void addMarkers() {
 	        if (debugToasts) {
 	        	Toast.makeText(getBaseContext(), "Adding my location Marker", Toast.LENGTH_LONG).show(); }
-	        map.addMarker(new MarkerOptions().position(myLocation.getLatLng()).title("Me"));
+	        map.addMarker(myLocation.makeMarker("You", Bin.PersonMask));
 	        map.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation.getLatLng(), 15));
 	     
 	        if (debugToasts) {
 	        	Toast.makeText(getBaseContext(), "Requesting documents", Toast.LENGTH_LONG).show(); }
 
-	        int closest = 0;
 	        for (int i = 0; i < closeBins.length; ++i) {
-	            if (i == 0) {
-	                MarkerOptions mOptions = new MarkerOptions();
-	                mOptions = mOptions.position(closeBins[0].getLatLng());
-	                mOptions = mOptions.title("Bin" + 1);
-	                map.addMarker(mOptions);
-	            } else {
-	                MarkerOptions mOptions = new MarkerOptions();
-	                mOptions = mOptions.position(closeBins[i].getLatLng());
-	                mOptions = mOptions.title("Bin" + (i+1));
-	                map.addMarker(mOptions);
-	            }
+	        	map.addMarker(myLocation.makeMarker("Bin" + (i+1), MainActivity.searchType));
 	        }
 
 	        if (debugToasts) {

@@ -1,12 +1,16 @@
 package com.example.binloco;
 
-import android.graphics.PointF;
-
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-public class Bin implements Comparable{
+/**
+ * Bin Class used to store the bin data in an object.
+ * BinLoco
+ * ICS4UP
+ * @author Adit, Daniel, Vanshil
+ * @version April 14, 2015
+ */
+public class Bin implements Comparable<Object>{
 	private LatLng loc;
 	private int types;
 	public static final int LitterMask = 0B001, RecyclingMask = 0B010, GreenMask = 0B100, PersonMask = 0B1000;
@@ -17,7 +21,7 @@ public class Bin implements Comparable{
 	public Bin(LatLng loc, int types)
 	{
 		this.loc = loc;
-		this.types = types;
+		this.types = types;		
 	}
 	
 	@Override
@@ -37,7 +41,7 @@ public class Bin implements Comparable{
 	 * 		0 will use pythagorean, 1 haversine, 2 Spherical law of cosines 
 	 * @return distance
 	 */
-    public double getDist(Bin p2, int technique) { return getDist(p2.getLatLng(), technique);}
+    public double getDist(Bin p2, int technique) {return getDist(p2.getLatLng(), technique);}
 
     /**
 	 * Calculates the approximate distance between this point, and another point. <br>
@@ -95,16 +99,59 @@ public class Bin implements Comparable{
     	.icon(BitmapDescriptorFactory.defaultMarker(Colours[type]));
 	}
 	
+	/**
+	 * getter for the user's current latitude coordinate
+	 * @return coordinate
+	 */
 	public double getLat() { return loc.latitude; }
+	
+	/**
+	 * getter for the user's current longitude coordinate
+	 * @return coordinate
+	 */
 	public double getLon() { return loc.longitude; }
+	
+	/**
+	 * getter for the user's current location coordinates
+	 * @return coordinate(s)
+	 */
 	public LatLng getLatLng() { return loc; }
 
+	/**
+	 * getter for the type of bin
+	 * @return types
+	 */
 	public int getTypes() {return types; }
+	
+	/**
+	 * Method used to identiy if bin is a garbage bin or not
+	 * @return types, LitterMask
+	 */
 	public boolean isLitter() { return (types&LitterMask) != 0; }
+	/**
+	 * Method used to identiy if bin is a recycling bin or not
+	 * @return types, RecyclingMask
+	 */
 	public boolean isRecycling() { return (types&RecyclingMask) != 0; }
+	/**
+	 * Method used to identiy if bin is a green bin or not
+	 * @return types, GreenMask
+	 */
 	public boolean isGreenBin() { return (types&GreenMask) != 0; }
+	/**
+	 * Method used to identiy if tag is the user or not
+	 * @return types, RecyclingMask
+	 */
 	public boolean isPerson() { return (types&PersonMask) != 0; }
 
+	/**
+	 * Setter to set the Distance Algorithm 
+	 * @return distAlgrthm
+	 */
     public static void setDistAlgrthm(int distAlgrthm) { Bin.distAlgrthm = distAlgrthm; }
+    /**
+	 * Getter to get the Distance Algorithm 
+	 * @return distAlgrthm
+	 */
     public static int getDistAlgrthm() { return distAlgrthm; }
 }
